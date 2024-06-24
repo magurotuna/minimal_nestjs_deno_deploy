@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --unstable-kv --watch --allow-write --allow-read --allow-env --allow-net main.ts"
+    "dev": "deno run --watch --allow-write --allow-read --allow-env --allow-net main.ts"
   },
   "imports": {
     "@nestjs/common": "npm:@nestjs/common@^10.3.9",

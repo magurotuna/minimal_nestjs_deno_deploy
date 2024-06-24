@@ -1,5 +1,23 @@
 {
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --unstable-kv --watch --allow-write --allow-read --allow-env --allow-net main.ts"
+  },
+  "imports": {
+    "@nestjs/common": "npm:@nestjs/common@^10.3.9",
+    "@nestjs/core": "npm:@nestjs/core@^10.3.9",
+    "@nestjs/platform-express": "npm:@nestjs/platform-express@^10.3.9"
+  },
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
+  },
+  "deploy": {
+    "project": "8ee9d714-b050-45c0-aa73-06d37a833c20",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
   }
 }

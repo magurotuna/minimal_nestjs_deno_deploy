@@ -1,8 +1,31 @@
-export function add(a: number, b: number): number {
-  return a + b;
+import { NestFactory } from "@nestjs/core";
+import { Controller, Get, Injectable, Module } from "@nestjs/common";
+import "@nestjs/platform-express";
+
+@Injectable()
+class MyRepository {
+  constructor() {}
+
+  dummy(): Promise<string[]> {
+    return new Promise((resolve) => resolve([]));
+  }
 }
 
-// Learn more at https://deno.land/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
+@Controller()
+class MyController {
+  constructor(private myRepo: MyRepository) {}
+
+  @Get("/")
+  get(): Promise<string[]> {
+    return this.myRepo.dummy();
+  }
 }
+
+@Module({
+  providers: [MyRepository],
+  controllers: [MyController],
+})
+class AppModule {}
+
+const app = await NestFactory.create(AppModule);
+app.listen(5677);
